@@ -29,6 +29,9 @@ int removeNode(Node *head, int value);
 // insert a node into some position in the list
 int insertNode(Node *head, int data, int pos);
 
+// swap nodes at two given locations
+int swapNodes(Node *head, int pos1, int pos2);
+
 // delete the list and free up memory
 void deleteList(Node *head);
 

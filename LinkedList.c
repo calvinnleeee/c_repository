@@ -143,6 +143,48 @@ int insertNode(Node *head, int data, int pos) {
 }
 
 /*
+*   swapNodes: swap the positions of two nodes in the linked list
+*   param *head:  pointer to the head of the list
+*   param pos1:   the position of the first node to swap
+*   param pos2:   the position of the second node to swap
+*   return:       integer, 1 if successful, 0 if any error
+*/
+int swapNodes(Node *head, int pos1, int pos2) {
+
+  // find position 1 and its previous node
+  Node *p1current = head->next;
+  Node *p1prev = head;
+  while (p1current != NULL && pos1 != 0) {
+    pos1--;
+    p1prev = p1current;
+    p1current = p1current->next;
+  }
+  if (pos1 > 0) return 0;
+
+  // find position 2 and its previous node
+  Node *p2current = head->next;
+  Node *p2prev = head;
+  while (p2current != NULL && pos2 != 0) {
+    pos2--;
+    p2prev = p2current;
+    p2current = p2current->next;
+  }
+  if (pos2 > 0) return 0;
+
+  // if the two nodes are right next to each other handle differently
+  // one for pos1 > pos2, other for pos2 > pos1
+  
+  // swap them by manipulating their pointers
+  Node *temp = p2current->next;
+  p2current->next = p1current->next;
+  p1prev->next = p2current;
+  p2prev->next = p1current;
+  p1current->next = temp;
+
+  return 1;
+}
+
+/*
 *   deleteList: deletes the list and frees up memory
 *   param *head:  pointer to the head of the list to delete
 */
